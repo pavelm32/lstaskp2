@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var $is_authorized
+ * @var $user
+ */
+?>
+<?php
+if (!$is_authorized) :
+    ?>
 <form action="/user/registration/" method="post" enctype="multipart/form-data">
     <label>Имя<input type="text" name="name"></label>
     <label>Пароль<input type="password" name="password"></label>
@@ -17,3 +26,12 @@
     <label>Пароль<input type="password" name="password"></label>
     <input type="submit" value="Авторизоваться">
 </form>
+
+    <?php
+else :
+    ?>
+Здравствуйте, <?=$user?>. Вы авторизованы.
+<a href="?logout=Y">Выйти</a>
+    <?php
+endif;
+?>
