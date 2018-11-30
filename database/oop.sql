@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Категория 1',0,''),(2,'Категория 2',2,''),(3,'Категория 3',1,''),(4,'Категория 4',2,''),(5,'Категория 5',0,''),(6,'Категория 6',3,''),(7,'Категория 7',2,''),(8,'Категория 8',1,''),(9,'Категория 9',1,''),(10,'Категория 10',3,'');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `files`
 --
 
@@ -38,6 +64,33 @@ LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
 INSERT INTO `files` VALUES (1,'/Users/pmoskovets/Sites/taskp2/public/avatar/3da856ae667fccf4e7c3b5cd21f79282.jpg',10),(2,'/Users/pmoskovets/Sites/taskp2/public/avatar/4c8aeccd9711e0215d774b608d597966.jpg',3),(3,'/Users/pmoskovets/Sites/taskp2/public/avatar/d7bed0cbe4a198d40240ce64da78538a.jpg',5),(4,'/Users/pmoskovets/Sites/taskp2/public/avatar/10bfb6cf3b71be89d1f52db5ba4aa6b2.jpg',2),(5,'/Users/pmoskovets/Sites/taskp2/public/avatar/557eb00ff51c51beac54509a7e68e578.jpg',3),(6,'/Users/pmoskovets/Sites/taskp2/public/avatar/d9a1d60308dfcda9a1a4263f2bc60161.jpg',2),(7,'/Users/pmoskovets/Sites/taskp2/public/avatar/65bec4e4bd45c1788b687a8cab60fb39.jpg',7),(8,'/Users/pmoskovets/Sites/taskp2/public/avatar/6ad0c00590140967f1888f4cb110166e.jpg',9),(9,'/Users/pmoskovets/Sites/taskp2/public/avatar/761964f7c3b24b4cf1b446b11138d6e3.jpg',8),(10,'/Users/pmoskovets/Sites/taskp2/public/avatar/5efb31968f7cb65c59a3c643a7d8b29f.jpg',4),(11,'/Users/pmoskovets/Sites/taskp2/public/userfile/11_20181129_0935_test.jpg',11),(12,'/Users/pmoskovets/Sites/taskp2/public/userfile/11_20181129_0935_test.jpg',11);
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `category_id` int(11) NOT NULL DEFAULT 0,
+  `price` double(8,2) NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `items`
+--
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items` VALUES (1,'Товар 1',10,982.00,''),(2,'Товар 2',2,496.00,''),(3,'Товар 4',1,447.00,''),(4,'Товар 3',2,656.00,''),(5,'Товар 5',7,341.00,''),(6,'товар 6',10,432.00,''),(7,'Товар 7',1,570.00,''),(8,'Товар 8',5,583.00,''),(9,'Товар 9',7,607.00,''),(10,'Товар 10',1,401.00,'');
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,4 +131,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-30  1:12:44
+-- Dump completed on 2018-12-01  1:06:33

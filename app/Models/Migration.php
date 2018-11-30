@@ -8,8 +8,6 @@ class Migration
 {
     public static function migration()
     {
-        Capsule::schema()->dropIfExists('test');
-
         Capsule::schema()->dropIfExists('files');
         Capsule::schema()->create('files', function (Blueprint $table) {
             $table->increments('id');
@@ -50,6 +48,42 @@ class Migration
             $user->avatar = $faker->image(PUBLIC_PATH . '/avatar');
             $user->description = '';
             $user->save();
+        }
+
+        Capsule::schema()->dropIfExists('categories');
+        Capsule::schema()->create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('parent_id')->default(0);
+            $table->string('description')->default('');
+        });
+
+        $faker = \Faker\Factory::create('ru_RU');
+        for ($i = 0; $i < 10; $i++) {
+            $cat = new Category();
+            $cat->name = $faker->name;
+            $cat->parent_id = $faker->numberBetween(0, 2);
+            $cat->description = '';
+            $cat->save();
+        }
+
+        Capsule::schema()->dropIfExists('items');
+        Capsule::schema()->create('items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('category_id')->default(0);
+            $table->float('price');
+            $table->string('description')->default('');
+        });
+
+        $faker = \Faker\Factory::create('ru_RU');
+        for ($i = 0; $i < 10; $i++) {
+            $item = new Item();
+            $item->name = $faker->name;
+            $item->category_id = $faker->numberBetween(1, 10);
+            $item->price = $faker->numberBetween(100, 1000);
+            $item->description = '';
+            $item->save();
         }
 
         echo 'успешно';
